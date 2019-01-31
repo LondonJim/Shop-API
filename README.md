@@ -2,13 +2,12 @@
 
 #### Plan to create:
 
+GET, POST `/products`
 
-GET POST `/products`
+GET, PATCH, DELETE `/products/id`
 
-GET PATCH DELETE `/products/id`
+GET, POST `/orders`
 
-GET POST `/orders`
-
-GET DELETE `/orders/id`
+GET, DELETE `/orders/id`
 
 Add authentication so only relevant connections can access certain data
