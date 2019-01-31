@@ -22,14 +22,18 @@ router.get('/:productId', (req, res, next) => {
 })
 
 router.patch('/:productId', (req, res, next) => {
+  const id = req.params.productId
   res.status(200).json({
-    message: 'product is updated'
+    message: 'product is updated',
+    id: id
   })
 })
 
 router.delete('/:productId', (req, res, next) => {
+  const id = req.params.productId
   res.status(200).json({
-    message: 'product is deleted'
+    message: 'product is deleted',
+    id: id
   })
 })
 

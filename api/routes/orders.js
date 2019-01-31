@@ -14,14 +14,18 @@ router.post('/', (req, res, next) => {
 })
 
 router.get('/:orderId', (req, res, next) => {
+  const id = req.params.orderId
   res.status(200).json({
-    message: 'Individual order details'
+    message: 'Individual order details',
+    id: id
   })
 })
 
 router.delete('/:orderId', (req, res, next) => {
+  const id = req.params.orderId
   res.status(200).json({
-    message: 'Individual order deleted'
+    message: 'Individual order deleted',
+    id: id
   })
 })
 
