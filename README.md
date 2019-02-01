@@ -1,5 +1,7 @@
 # RESTful API for Products and Orders
 
+Following tutorial Academind
+
 #### Plan to create:
 
 GET, POST `/products`
