@@ -1,9 +1,16 @@
 const express = require('express')
 const app = express()
 const morgan = require('morgan')
+const mongoose = require('mongoose')
 
 const productRoutes = require('./api/routes/products')
 const orderRoutes = require('./api/routes/orders')
+
+mongoose.connect("mongodb://" + process.env.MONGO_ATLAS_USER + ":" + process.env.MONGO_ATLAS_PW + "@node-shop-shard-00-00-xesbf.azure.mongodb.net:27017,node-shop-shard-00-01-xesbf.azure.mongodb.net:27017,node-shop-shard-00-02-xesbf.azure.mongodb.net:27017/test?ssl=true&replicaSet=node-shop-shard-0&authSource=admin&retryWrites=true",
+  {
+    useNewUrlParser: true
+  }
+)
 
 app.use(morgan('dev'))
 app.use(express.urlencoded({extended: false}))
