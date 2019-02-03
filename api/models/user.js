@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-// mongoose.set('useCreateIndex', true) // fix: DeprecationWarning: collection.ensureIndex is deprecated. Use createIndexes instead.
+mongoose.set('useCreateIndex', true) // fix: DeprecationWarning: collection.ensureIndex is deprecated. Use createIndexes instead.
 
 const userSchema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
