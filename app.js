@@ -13,6 +13,7 @@ mongoose.connect("mongodb://" + process.env.MONGO_ATLAS_USER + ":" + process.env
 )
 
 app.use(morgan('dev'))
+app.use('/uploads', express.static('uploads'))
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())
 
