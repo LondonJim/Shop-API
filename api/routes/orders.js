@@ -2,8 +2,6 @@ const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
 
-const serverURL = 'http://localhost:3000'
-
 const Order = require('../models/order')
 const Product = require('../models/product')
 
@@ -22,7 +20,7 @@ router.get('/', (req, res, next) => {
             quantity: doc.quantity,
             request: {
               type: 'GET',
-              url: serverURL + '/orders/' + doc._id
+              url: req.get('host') + '/orders/' + doc._id
             }
           }
         })
@@ -56,7 +54,7 @@ router.post('/', (req, res, next) => {
         },
         request: {
           type: 'GET',
-          url: serverURL + '/orders/' + result._id
+          url: req.get('host') + '/orders/' + result._id
         }
       })
     })
@@ -77,7 +75,7 @@ router.get('/:orderId', (req, res, next) => {
         order: order,
         request: {
           type: 'GET',
-          url: serverURL + '/orders'
+          url: req.get('host') + '/orders'
         }
       })
     })
@@ -97,7 +95,7 @@ router.delete('/:orderId', (req, res, next) => {
         message: 'Order deleted',
         request: {
           type: 'POST',
-          url: serverURL + '/orders',
+          url: req.get('host') + '/orders',
           body: { productId: 'ID', quantity: 'Number'}
         }
       })

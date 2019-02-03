@@ -2,10 +2,6 @@ const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
 
-const serverURL = 'http://localhost:3000'
-
-const Product = require('../models/product')
-
 router.get('/', (req, res, next) => {
   Product.find()
     .select('name price _id')
@@ -20,7 +16,7 @@ router.get('/', (req, res, next) => {
             _id: doc._id,
             request: {
               type: 'GET',
-              url: serverURL + '/products/' + doc._id
+              url: req.get('host') + '/products/' + doc._id
             }
           }
         })
@@ -52,7 +48,7 @@ router.post('/', (req, res, next) => {
           _id: result._id,
           request: {
             type: 'GET',
-            url: serverURL + '/products/' + result._id
+            url: req.get('host') + '/products/' + result._id
           }
         }
       })
@@ -76,7 +72,7 @@ router.get('/:productId', (req, res, next) => {
           request: {
             type: 'GET',
             description: 'Get all products',
-            url: serverURL + '/products'
+            url: req.get('host') + '/products'
           }
         })
       } else {
@@ -103,7 +99,7 @@ router.patch('/:productId', (req, res, next) => {
         message: 'Product updated',
         request: {
           type: 'GET',
-          url: serverURL + '/products/' + id
+          url: req.get('host') + '/products/' + id
         }
       })
     })
@@ -124,7 +120,7 @@ router.delete('/:productId', (req, res, next) => {
         message: 'Product deleted',
         request: {
           type: 'POST',
-          url: serverURL + '/products',
+          url: req.get('host') + '/products',
           data: { name: 'String', price: 'Number' }
         }
       })
