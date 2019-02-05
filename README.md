@@ -27,7 +27,8 @@ eg.
 ```
 ----
 
-## API
+
+Below are the details on using the API, most actions require a valid JWT in the header authorization. THe JWT can be supplied once a user has signed up and the logged in. If using something like Postman to access the API remember to select raw and the JSON(application/json) type when entering the details except for the creation of a new product where form-data must be entered and an image file uploaded. Currently image files are stored under a directory /uploads (off the root directory) which is created automatically when the first image is uploaded.
 
 ### Products
 
