@@ -32,36 +32,7 @@ const Product = require('../models/product')
 
 router.get('/', ProductsController.productsGetAll)
 
-router.post("/", checkAuth, upload.single('productImage'), (req, res, next) => {
-  console.log(req.file.path)
-  const product = new Product({
-    _id: new mongoose.Types.ObjectId(),
-    name: req.body.name,
-    price: req.body.price,
-    productImage: req.file.path
-  })
-  product
-    .save()
-    .then(result => {
-      console.log(result)
-      res.status(201).json({
-        message: 'Created product successfully',
-        createdProduct: {
-          name: result.name,
-          price: result.price,
-          _id: result._id,
-          request: {
-            type: 'GET',
-            url: req.get('host') + '/products/' + result._id
-          }
-        }
-      })
-    })
-    .catch(err => {
-      console.log(err)
-      res.status(500).json({error: err})
-    })
-})
+router.post('/', checkAuth, upload.single('productImage'), ProductsController.productsCreate)
 
 router.get('/:productId', (req, res, next) => {
   const id = req.params.productId
@@ -69,7 +40,7 @@ router.get('/:productId', (req, res, next) => {
     .select('name price _id productImage')
     .exec()
     .then(doc => {
-      console.log("From database", doc)
+      console.log('From database', doc)
       if (doc) {
         res.status(200).json({
           product: doc,
@@ -80,7 +51,7 @@ router.get('/:productId', (req, res, next) => {
           }
         })
       } else {
-          res.status(404).json({message: "No valid ID found"})
+          res.status(404).json({message: 'No valid ID found'})
       }
     })
     .catch(err => {
