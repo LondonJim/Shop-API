@@ -144,7 +144,7 @@ note: returns a JWT that can be used for an hour
 
 ----
 
-Delete a user
+Delete a user (must use JWT in header authorization)
 
 `Delete` `/users/:id`
 

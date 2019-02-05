@@ -1,14 +1,12 @@
 const express = require('express')
 const router = express.Router()
-const mongoose = require('mongoose')
-const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
+const checkAuth = require('../middleware/check-auth')
 const UsersController = require('../controllers/users')
 
 router.post('/signup', UsersController.usersSignUp)
 
 router.post('/login', UsersController.usersLogin)
 
-router.delete('/:userId', UsersController.usersDelete)
+router.delete('/:userId', checkAuth, UsersController.usersDelete)
 
 module.exports = router
