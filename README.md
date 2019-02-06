@@ -144,8 +144,16 @@ note: returns a JWT that can be used for an hour
 
 ----
 
-Delete a user (must use JWT in header authorization)
+Delete a user (email and password of matching id)
 
 `Delete` `/users/:id`
+
+example body(must match user id of user to delete):
+```
+{
+    "email": "user@example.com",
+    "password": "test"
+}
+```
 
 ----

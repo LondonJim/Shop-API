@@ -7,6 +7,6 @@ router.post('/signup', UsersController.usersSignUp)
 
 router.post('/login', UsersController.usersLogin)
 
-router.delete('/:userId', checkAuth, UsersController.usersDelete)
+router.delete('/delete/:userId', UsersController.usersDelete)
 
 module.exports = router

@@ -89,11 +89,36 @@ exports.usersLogin = ((req, res, next) => {
 })
 
 exports.usersDelete = ((req, res, next) => {
-  User.remove({ _id: req.params.userId })
+  User.find({ email: req.body.email })
     .exec()
-    .then(result => {
-      res.status(200).json({
-        message: 'User deleted'
+    .then(user => {
+      if (user.length < 1) {
+        return res.status(401).json({
+          message: 'Auth failed 1'
+        })
+      }
+      bcrypt.compare(req.body.password, user[0].password, (err, result) => {
+        if (err) {
+          return res.status(401).json({
+            message: 'Auth failed 2'
+          })
+        }
+        console.log(String(user[0]._id))
+        console.log(req.params.userId)
+        if (String(user[0]._id) !== req.params.userId) {
+          return res.status(401).json({
+            message: 'Auth failed 3'
+          })
+        }
+        if (result) {
+          User.remove({ _id: req.params.userId })
+            .exec()
+            .then(result => {
+              return res.status(200).json({
+                message: 'User deleted'
+              })
+            })
+        }
       })
     })
     .catch(err => {
