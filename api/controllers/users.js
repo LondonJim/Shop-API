@@ -94,20 +94,20 @@ exports.usersDelete = ((req, res, next) => {
     .then(user => {
       if (user.length < 1) {
         return res.status(401).json({
-          message: 'Auth failed 1'
+          message: 'Auth failed'
         })
       }
       bcrypt.compare(req.body.password, user[0].password, (err, result) => {
         if (err) {
           return res.status(401).json({
-            message: 'Auth failed 2'
+            message: 'Auth failed'
           })
         }
         console.log(String(user[0]._id))
         console.log(req.params.userId)
         if (String(user[0]._id) !== req.params.userId) {
           return res.status(401).json({
-            message: 'Auth failed 3'
+            message: 'Auth failed'
           })
         }
         if (result) {

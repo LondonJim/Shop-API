@@ -146,7 +146,7 @@ note: returns a JWT that can be used for an hour
 
 Delete a user (email and password of matching id)
 
-`Delete` `/users/:id`
+`Delete` `/users/delete/:id`
 
 example body(must match user id of user to delete):
 ```
