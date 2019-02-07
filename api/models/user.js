@@ -4,6 +4,7 @@ mongoose.set('useCreateIndex', true) // fix: DeprecationWarning: collection.ensu
 
 const userSchema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
+  role: String,
   email: {
     type: String,
     required: true,
